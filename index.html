@@ -3,8 +3,16 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>TrialGraph — Clinical-trial intelligence, read in full</title>
-<meta name="description" content="The go/no-go answer your team would spend weeks on — recall-complete across all 590,635 registered studies, every claim cited and verified. For AI agents and the teams who plan trials." />
+<title>TrialGraph — The memory layer for clinical development</title>
+<meta name="description" content="Every clinical trial ever run, turned into the intelligence behind your next one: what was tried, what failed, and the real reason why. For biotech, investors, and the agents building on them." />
+<meta property="og:title" content="TrialGraph — Clinical development, with a memory" />
+<meta property="og:description" content="Every trial ever run becomes intelligence for your next one — what was tried, what failed, and the real reason why." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://caterpillarc15.github.io/trialgraph/" />
+<meta property="og:image" content="https://caterpillarc15.github.io/trialgraph/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#f7f5f0" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 14.5 10 5.5 15 13' stroke='%2316140f' stroke-width='1.1' opacity='.4' fill='none'/%3E%3Ccircle cx='10' cy='5.5' r='2.6' fill='%2316715a'/%3E%3Ccircle cx='5' cy='14.5' r='2' fill='%2316140f'/%3E%3Ccircle cx='15' cy='13' r='2' fill='%2316140f'/%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -30,7 +38,7 @@
   nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(10px);background:rgba(247,245,240,.72);border-bottom:1px solid var(--line)}
   nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
   .brand{display:flex;align-items:center;gap:9px;font-weight:600;font-size:17px;letter-spacing:-.01em}
-  .brand .mk{width:18px;height:18px;border-radius:5px;background:conic-gradient(from 210deg,var(--pine),#3aa784,var(--amber),var(--pine));box-shadow:0 0 0 1px rgba(22,20,15,.08)}
+  .brand .mk{width:20px;height:20px;flex:none}
   .navlinks{display:flex;gap:30px;font-size:14.5px;color:var(--muted)}
   .navlinks a:hover{color:var(--ink)}
   .btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:11px 20px;font-size:14.5px;font-weight:500;transition:.2s cubic-bezier(.2,.7,.2,1)}
@@ -126,28 +134,39 @@
   footer{border-top:1px solid var(--line);padding:32px 0;color:var(--faint);font-size:13.5px}
   footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
   .disc{color:var(--faint);font-size:11.5px;max-width:740px;margin:34px auto 0;text-align:center;line-height:1.65}
+  .btn.dark::after{content:"→";margin-left:-1px;transition:transform .22s cubic-bezier(.2,.7,.2,1)}
+  .btn.dark:hover::after{transform:translateX(3px)}
+  .livelabel{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);display:inline-flex;align-items:center;gap:8px}
+  .livelabel::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--pine);box-shadow:0 0 0 3px rgba(22,113,90,.14)}
+  .navlinks a{position:relative}
+  .navlinks a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+  .navlinks a:hover::after{transform:scaleX(1)}
+  a:focus-visible,.btn:focus-visible{outline:2px solid var(--pine);outline-offset:3px;border-radius:10px}
+  @media(max-width:680px){.navlinks{display:none}.hero{padding-top:72px}nav .wrap{height:58px}}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}.btn.dark::after{transition:none}}
 </style>
 </head>
 <body>
 <nav><div class="wrap">
-  <div class="brand"><span class="mk"></span> TrialGraph</div>
+  <div class="brand"><svg class="mk" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 14.5 10 5.5 15 13" stroke="currentColor" stroke-width="1.1" opacity=".42"/><circle cx="10" cy="5.5" r="2.5" fill="#16715a"/><circle cx="5" cy="14.5" r="1.9" fill="currentColor"/><circle cx="15" cy="13" r="1.9" fill="currentColor"/></svg> TrialGraph</div>
   <div class="navlinks"><a href="#why">Why</a><a href="#proof">Proof</a><a href="#product">Product</a><a href="#pricing">Pricing</a></div>
   <a class="btn dark" href="#cta">Request access</a>
 </div></nav>
 
 <header class="hero"><div class="wrap">
-  <span class="eyebrow">Verified clinical-trial intelligence</span>
-  <h1>Every clinical trial,<br><em>read in full.</em></h1>
-  <p class="lede">The go/no-go answer your team would spend weeks assembling — recall-complete across all 590,635 registered studies, every claim cited and verified.</p>
+  <span class="eyebrow">The memory layer for clinical development</span>
+  <h1>Clinical development,<br><em>with a memory.</em></h1>
+  <p class="lede">Every trial ever run becomes intelligence for your next one — what was tried, what failed, and the real reason why.</p>
   <div class="cta-row">
     <a class="btn dark" href="#cta">Request a landscape</a>
     <a class="btn ghost" href="#product">See the API</a>
   </div>
 </div></header>
 
-<div class="stage"><div class="wrap" style="display:flex;justify-content:center">
+<div class="stage"><div class="wrap" style="display:flex;flex-direction:column;align-items:center;gap:16px">
+  <span class="livelabel reveal">Live example · one API call</span>
   <div class="card reveal">
-    <div class="bar">trialgraph <span class="ep">/indication/landscape</span><span class="ok"><span class="tick">✓</span> verified · 0.96</span></div>
+    <div class="bar">trialgraph <span class="ep">/indication/landscape</span><span class="ok"><span class="tick">✓</span> 0.96</span></div>
     <div class="q"><b>Phase-2 MASH, GLP-1-adjacent mechanism, US/EU</b> — go or no-go?</div>
     <div class="rows">
       <div class="r"><span class="k">Comparable trials</span><span class="v">702 · read in full</span></div>
@@ -166,29 +185,30 @@
 
 <section id="why"><div class="wrap reveal">
   <span class="eyebrow">Why it's different</span>
-  <h2>Not a dashboard. Not a chatbot. The finished, provable answer.</h2>
+  <h2>Not a dashboard. Not a chatbot. The finished answer.</h2>
   <div class="three">
-    <div class="cell"><div class="vs">vs. Citeline / IQVIA</div><h3>The answer, not a seat</h3><p>Incumbents sell a platform and analysts to read it. We return the finished memo — comparables, endpoints, competitors, failures, readouts, risks — ready for the board.</p></div>
-    <div class="cell"><div class="vs">vs. AI / RAG</div><h3>Reads every trial</h3><p>RAG reasons over the top 5 and hallucinates. We aggregate the complete cohort, and a verifier checks every number and citation against source.</p></div>
-    <div class="cell"><div class="vs">vs. the raw registry</div><h3>Recovers what it hides</h3><p>~15% of terminations say "no reason given." We resolve them — sourced to SEC filings, FDA letters, and press.</p></div>
+    <div class="cell"><div class="vs">vs. Citeline / IQVIA</div><h3>The answer, not a seat</h3><p>They sell a platform and the analysts to read it. We hand you the memo — comparables, endpoints, competitors, failures, readouts, risks.</p></div>
+    <div class="cell"><div class="vs">vs. AI / RAG</div><h3>Reads every trial</h3><p>Chat tools sample the top few results. We read the whole cohort, so the patterns only the full set reveals actually surface.</p></div>
+    <div class="cell"><div class="vs">vs. the raw registry</div><h3>Finds what it hides</h3><p>When the registry says "no reason given," we find the real one — in filings, FDA letters, and press.</p></div>
   </div>
 </div></section>
 
 <section id="proof"><div class="wrap insight reveal">
-  <span class="eyebrow">What only reading all of them reveals</span>
+  <span class="eyebrow">What the full record reveals</span>
   <h2>Most trials don't die on biology. They die on <span class="big">money and enrollment</span>.</h2>
-  <p class="sub" style="max-width:640px">Read all 1,159 terminated NSCLC trials and the picture inverts: most stop for funding or accrual, not efficacy. A sampling tool tells you to secure your endpoint. The complete read tells you to secure your funding and your sites.</p>
+  <p class="sub" style="max-width:640px">Across 1,159 terminated NSCLC trials, most stopped for funding or accrual — not efficacy. A sampling tool tells you to secure your endpoint. The full record tells you to secure your funding and your sites.</p>
   <div class="nums">
     <div><div class="n pine">61%</div><div class="l">of NSCLC failures non-scientific</div></div>
     <div><div class="n pine">44%</div><div class="l">of MASH failures financial</div></div>
     <div><div class="n">27%</div><div class="l">Alzheimer's — the exception that dies on efficacy</div></div>
   </div>
+  <p style="margin-top:30px;font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.6vw,26px);color:var(--ink);letter-spacing:-.01em;max-width:24ch">The next great trial shouldn't repeat the last expensive one.</p>
 </div></section>
 
 <section id="product"><div class="wrap reveal">
   <span class="eyebrow">Product surface</span>
-  <h2>Named, callable, cited. From an agent or a browser.</h2>
-  <p class="sub">Every entity — indication, trial, drug, sponsor, site — has enrichments that return structured data with a trust score and citations. Over a hosted MCP server and HTTP.</p>
+  <h2>Every entity, one call away.</h2>
+  <p class="sub">Indications, trials, drugs, sponsors, sites — each returns structured intelligence. Over a hosted MCP server and HTTP, for any agent.</p>
   <div class="tools">
     <div class="tool"><div class="nm">indication_landscape</div><h4>The go/no-go memo</h4><p>Comparables, endpoint benchmark with trends, competitor map, failure-pattern library, readout calendar, protocol risks, and a verdict.</p></div>
     <div class="tool"><div class="nm">trial_enrich</div><h4>The full dossier</h4><p>Any NCT → verified failure cause, program trajectory, dated timeline, comparable set — every field grounded in a verbatim source.</p></div>
@@ -210,7 +230,7 @@
 
 <section id="pricing"><div class="wrap reveal">
   <span class="eyebrow">Pricing</span>
-  <h2>Sell-before-fully-automated. Every memo trains the graph.</h2>
+  <h2>Start with a memo. Scale to the whole pipeline.</h2>
   <div class="price">
     <div class="tier"><div class="t">Per memo</div><div class="amt">$500–1,500</div><div class="d">A single trial-landscape report</div><ul><li>Full go/no-go memo</li><li>Trust-scored & cited</li><li>48-hour turnaround</li></ul></div>
     <div class="tier mid"><div class="t">Watchtower</div><div class="amt">$1–5k<small> /mo</small></div><div class="d">A therapeutic area you own</div><ul><li>Weekly landscape deltas</li><li>New trials, terminations, readouts</li><li>Failure-pattern library</li></ul></div>
@@ -221,20 +241,20 @@
 <section id="cta"><div class="wrap final reveal">
   <span class="eyebrow">Design partners</span>
   <h2>Bring a trial concept. Get back days of work.</h2>
-  <p class="sub">Ten design partners planning, funding, or advising trials in one therapeutic area. Give us a concept; we return the landscape — recall-complete, verified, cited.</p>
+  <p class="sub">Ten design partners planning, funding, or advising trials in one therapeutic area. Give us a concept; we return the landscape.</p>
   <a class="btn dark" href="mailto:hello@betaseat.com?subject=TrialGraph%20design%20partner">Request access</a>
-  <p class="disc">Built on public data: ClinicalTrials.gov, NIH RePORTER, openFDA, SEC EDGAR. Figures shown (590,635 studies; failure-pattern shares for MASH, NSCLC, Alzheimer's) are produced by the system over the live registry. No proprietary licensing required for the core product; per-site patient-availability is an optional real-world-data lane.</p>
 </div></section>
 
 <footer><div class="wrap">
-  <div class="brand" style="font-size:15px"><span class="mk"></span> TrialGraph</div>
+  <div class="brand" style="font-size:15px"><svg class="mk" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 14.5 10 5.5 15 13" stroke="currentColor" stroke-width="1.1" opacity=".42"/><circle cx="10" cy="5.5" r="2.5" fill="#16715a"/><circle cx="5" cy="14.5" r="1.9" fill="currentColor"/><circle cx="15" cy="13" r="1.9" fill="currentColor"/></svg> TrialGraph</div>
   <div>© 2026 · hello@betaseat.com</div>
 </div></footer>
 
 <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
 <script>
   // smooth scroll (graceful if CDN blocked)
-  try{ if(window.Lenis){ const l=new Lenis({duration:1.1,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t))}); function raf(t){l.raf(t);requestAnimationFrame(raf)} requestAnimationFrame(raf);
+  const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try{ if(window.Lenis && !reduceMotion){ const l=new Lenis({duration:1.1,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t))}); function raf(t){l.raf(t);requestAnimationFrame(raf)} requestAnimationFrame(raf);
     document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const el=document.querySelector(a.getAttribute('href'));if(el){e.preventDefault();l.scrollTo(el,{offset:-60})}})); } }catch(e){}
   // scroll-reveal, one-time, gentle
   const io=new IntersectionObserver((es)=>{es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.14,rootMargin:'0px 0px -8% 0px'});
